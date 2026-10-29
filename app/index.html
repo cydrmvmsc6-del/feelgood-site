@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FeelGood Conduite sur l’App Store</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="Le coach des jeunes conducteurs. Gratuit sur iPhone.">
+<meta property="og:title" content="FeelGood Conduite, le coach des jeunes conducteurs">
+<meta property="og:description" content="Disponible gratuitement sur l’App Store (iPhone).">
+<meta property="og:image" content="https://feelgoodconduite.fr/og-image.jpg">
+<!-- Page de passage pour les liens des réseaux sociaux (29/10/2026) :
+     compte la visite dans Umami (avec utm_source), puis envoie vers l'App Store.
+     Android : boutons de téléchargement de la landing page (l'app n'est pas encore sur Google Play). -->
+<script defer src="https://cloud.umami.is/script.js" data-website-id="57490624-2c99-49d0-a3ac-b786a88d68ae"></script>
+<script>
+(function () {
+  var STORE = 'https://apps.apple.com/fr/app/feelgood-conduite/id6808385275';
+  var dest = /Android/i.test(navigator.userAgent) ? 'https://feelgoodconduite.fr/#telecharger' : STORE;
+  var done = false;
+  function go() { if (!done) { done = true; location.replace(dest); } }
+  var source = new URLSearchParams(location.search).get('utm_source') || 'direct';
+  function waitUmami(n) {
+    if (window.umami && window.umami.track) {
+      try { window.umami.track('clic-app-store', { source: source, appareil: /Android/i.test(navigator.userAgent) ? 'android' : 'autre' }); } catch (e) {}
+      setTimeout(go, 700);
+    } else if (n > 0) setTimeout(function () { waitUmami(n - 1); }, 100);
+    else go();
+  }
+  window.addEventListener('load', function () { waitUmami(20); });
+  setTimeout(go, 3000);
+})();
+</script>
+<style>body{margin:0;font-family:-apple-system,system-ui,sans-serif;background:#f1fbd0;color:#203126;display:flex;min-height:100vh;align-items:center;justify-content:center;text-align:center;padding:24px}a{color:#203126;font-weight:700}</style>
+</head>
+<body>
+<p>Ouverture de l’App Store…<br><br><a href="https://apps.apple.com/fr/app/feelgood-conduite/id6808385275">Ouvrir FeelGood Conduite sur l’App Store</a></p>
+</body>
+</html>
